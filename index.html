@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+       (1) META + TITLE
+       ========================================================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heavy-Ion Collision Phenomenology Journal Club — Winter 2026</title>
+
+  <!-- =========================================================
+       (2) STYLES (PALE BLUE THEME + BACKGROUND IMAGE)
+       
+       ========================================================= -->
+  <style>
+    :root{
+      --bg1:#eaf3ff;
+      --bg2:#f6fbff;
+      --card:rgba(255,255,255,0.78);
+      --text:#0b1b33;
+      --muted:#3f5878;
+      --accent:#2b6cb0;
+      --accent2:#1e4f86;
+      --border:rgba(11,27,51,0.15);
+      --shadow: 0 10px 30px rgba(11,27,51,0.12);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      background:
+        linear-gradient(rgba(234,243,255,0.88), rgba(246,251,255,0.88)),
+        url("chun.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .wrap{max-width:1050px;margin:0 auto;padding:24px;}
+    header{padding:54px 0 16px;}
+
+    .title{
+      font-size:clamp(28px, 4vw, 44px);
+      line-height:1.15;
+      margin:0 0 10px;
+      letter-spacing:-0.02em;
+    }
+
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(14px, 2vw, 18px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap:18px;
+      margin-top:22px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:0.01em;
+    }
+
+    p{margin:0 0 12px;}
+    .muted{color:var(--muted)}
+
+    /* Meeting details blocks */
+    .info{display:grid;gap:10px;margin-top:8px;}
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      border:1px dashed rgba(11,27,51,0.22);
+      border-radius:14px;
+      background: rgba(255,255,255,0.55);
+    }
+    .badge{
+      flex:0 0 auto;
+      font-size:12px;
+      font-weight:700;
+      color:white;
+      background:var(--accent);
+      padding:3px 10px;
+      border-radius:999px;
+      margin-top:2px;
+      letter-spacing:0.02em;
+    }
+
+    /* Links */
+    a{color:var(--accent);text-decoration:none;font-weight:600}
+    a:hover{text-decoration:underline}
+    .smalllink{font-weight:600;color:var(--accent2)}
+    .smalllink:hover{color:var(--accent);}
+
+    /* Sections */
+    .section{margin-top:18px;}
+
+    /* Toolbar (search only) */
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin:0 0 10px;
+    }
+    .toolbar-left{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .input{
+      border:1px solid rgba(11,27,51,0.18);
+      background: rgba(255,255,255,0.70);
+      border-radius:12px;
+      padding:8px 10px;
+      min-width:240px;
+      outline:none;
+    }
+    .input:focus{border-color: rgba(43,108,176,0.55);}
+
+    /* Table */
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 860px;
+    }
+    thead th{
+      text-align:left;
+      font-size:13px;
+      letter-spacing:0.02em;
+      color:var(--muted);
+      background: rgba(234,243,255,0.95);
+      padding:12px 12px;
+      border-bottom:1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    tbody td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(11,27,51,0.10);
+      vertical-align:top;
+      font-size:14px;
+    }
+    tbody tr:hover{background: rgba(234,243,255,0.55);}
+
+    .pill{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      background: rgba(43,108,176,0.10);
+      color: var(--accent2);
+      border: 1px solid rgba(43,108,176,0.25);
+      font-size:12px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    /* Suggested topics cards */
+    .topics{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 700px){
+      .topics{grid-template-columns:1fr;}
+    }
+    .topic{
+      border:1px solid rgba(11,27,51,0.14);
+      background: rgba(255,255,255,0.65);
+      border-radius:14px;
+      padding:12px 12px;
+      box-shadow: 0 8px 20px rgba(11,27,51,0.08);
+    }
+
+    .topic a{
+      font-size:14px;
+      display:block;
+      line-height:1.4;
+    }
+
+
+    footer{
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    code{
+      background: rgba(255,255,255,0.65);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(11,27,51,0.12);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- =========================================================
+         (3) HEADER / TITLE
+         ========================================================= -->
+    <header>
+      <h1 class="title">Heavy-Ion Collision Phenomenology Journal Club</h1>
+      <p class="subtitle">Winter 2026 · Department of Physics and Astronomy · Wayne State University</p>
+    </header>
+
+    <!-- =========================================================
+         (4) TOP GRID: ABOUT + MEETING DETAILS
+         ========================================================= -->
+    <div class="grid">
+      <!-- (4A) ABOUT CARD -->
+      <section class="card">
+        <h2>About the Club</h2>
+        <p>
+          The <strong>Heavy-Ion Collision Phenomenology Journal Club</strong> meets weekly to discuss relevant topics in
+          heavy-ion collision (HIC) physics, with an emphasis on <strong>recent developments</strong> and
+          <strong>new advances</strong> in the field.
+        </p>
+        <p>
+          Each week, a member presents a paper, followed by a <strong>Q&amp;A</strong> and a
+          <strong>discussion session</strong>.
+        </p>
+      </section>
+
+      <!-- (4B) MEETING DETAILS CARD -->
+      <aside class="card">
+        <h2>Meeting Details</h2>
+        <div class="info">
+          <div class="row">
+            <span class="badge">WHEN</span>
+            <div>
+              <div><strong>Fridays</strong>, 3:00 PM – 4:00 PM</div>
+              <div class="muted">Weekly (Winter 2026)</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="badge">WHERE</span>
+            <div>
+              <div><strong>Room 312</strong>, Physics Building</div>
+              <div class="muted">Wayne State University</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- =========================================================
+         (5) SCHEDULE TABLE SECTION
+         
+         ========================================================= -->
+    <section class="section">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <h2 style="margin:0;">Schedule</h2>
+        </div>
+
+        <div class="toolbar-left">
+          <input id="searchInput" class="input" type="text" placeholder="Search schedule (speaker, topic, slides)..." />
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="scheduleTable">
+          <thead>
+            <tr>
+              <th style="width:160px;">Date</th>
+              <th style="width:180px;">Speaker</th>
+              <th>Topic</th>
+              <th style="width:260px;">Slides</th>
+             
+            </tr>
+          </thead>
+
+          <!-- ====== EDIT SCHEDULE ROWS HERE ======
+               For each row:
+               - Put the topic link in the Topic column (href=...)
+               - Put your slide link (PDF/Google Slides) in Slides column
+          -->
+          <tbody id="scheduleBody">
+            <tr>
+              <td>Feb 6, 2026</td>
+              <td>Naveenkumar S</td>
+              <td>
+                <a class="smalllink" href="https://arxiv.org/pdf/2509.14301v3" target="_blank" rel="noopener noreferrer">
+                  An improved formula for Wigner function and spin polarization 
+                </a>
+              </td>
+              <td class="muted">—</td>
+             
+            </tr>
+
+            <tr>
+              <td>Feb 13, 2026</td>
+              <td>Syed Afrid Jahan</td>
+              <td>
+                <a class="smalllink" href="#" target="_blank" rel="noopener noreferrer">
+                  TBD
+                </a>
+              </td>
+              <td class="muted">—</td>
+             
+            </tr>
+
+            <tr>
+              <td>Feb 20, 2026</td>
+              <td>TBD</td>
+              <td>
+                <a class="smalllink" href="#" target="_blank" rel="noopener noreferrer">
+                  TBD
+                </a>
+              </td>
+              <td class="muted">—</td>
+              
+            </tr>
+            <!--<tr>
+              <td>Mar 20, 2026</td>
+              <td>TBD</td>
+              <td>
+                <a class="smalllink" href="#" target="_blank" rel="noopener noreferrer">
+                  Example topic (clickable)
+                </a>
+              </td>
+              <td>
+                <a class="smalllink" href="#" target="_blank" rel="noopener noreferrer">
+                  Slides (replace with link) (clickable)
+                </a>
+              </td>  -->
+              
+            </tr>
+           
+          </tbody>
+          <!-- ====== END SCHEDULE ROWS ====== -->
+
+        </table>
+      </div>
+
+    
+    </section>
+
+    <!-- =========================================================
+         (6) SUGGESTED TOPICS SECTION (CLICKABLE LINKS)
+         ========================================================= -->
+    <section class="section">
+      <h2 style="margin:0 0 8px;">Suggested Topics</h2>
+      
+
+      <div class="topics">
+        <div class="topic">
+          <div class="muted">Spin Hydrodynamics and Spin Polarization </div>
+
+          
+          <a href="https://arxiv.org/pdf/2411.11753" target="_blank" rel="noopener noreferrer">
+            An introduction to relativistic spin hydrodynamics
+          </a> <br>
+          <a href="https://arxiv.org/pdf/2507.01864" target="_blank" rel="noopener noreferrer">
+           Spin hydrodynamics – recent developments
+          </a> <br>
+         
+          <a href="https://arxiv.org/pdf/2106.08125" target="_blank" rel="noopener noreferrer">
+            Probing early-time longitudinal dynamics with the Λ hyperon’s spin polarization in
+relativistic heavy-ion collisions
+          </a> <br>
+          <a href="https://arxiv.org/pdf/2411.08223" target="_blank" rel="noopener noreferrer">
+            Spin dynamics with realistic hydrodynamic background
+for relativistic heavy-ion collisions
+          </a> <br>
+          
+        </div>
+
+        <div class="topic">
+          <div class="muted">Charge Diffusion </div>
+          <a href="https://journals.aps.org/prc/abstract/10.1103/PhysRevC.98.034916" target="_blank" rel="noopener noreferrer">
+            Net-baryon diffusion in fluid-dynamic simulations of relativistic heavy-ion collisions
+          </a> <br>
+          <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.034014" target="_blank" rel="noopener noreferrer">
+            Diffusion coefficient matrix of the strongly interacting quark-gluon plasma
+          </a> <br>
+          
+        </div>
+
+    <!--    <div class="topic">
+          <a href="https://arxiv.org/search/?query=hydrodynamics+heavy-ion&searchtype=all&source=header"
+             target="_blank" rel="noopener noreferrer">
+            Relativistic hydrodynamics in HIC (arXiv search)
+          </a>
+          <div class="muted">Hydro modeling, transport coefficients, initial conditions.</div>
+        </div>
+
+        <div class="topic">
+          <a href="https://arxiv.org/search/?query=spin+polarization+heavy-ion&searchtype=all&source=header"
+             target="_blank" rel="noopener noreferrer">
+            Spin / polarization in HIC (arXiv search)
+          </a>
+          <div class="muted">Global polarization, vorticity, Wigner functions.</div>
+        </div>
+        
+        <div class="topic">
+          <a href="https://arxiv.org/search/?query=spin+polarization+heavy-ion&searchtype=all&source=header"
+             target="_blank" rel="noopener noreferrer">
+            Spin / polarization in HIC (arXiv search)
+          </a>
+          <div class="muted">Global polarization, vorticity, Wigner functions.</div>
+        </div>
+
+        
+        <div class="topic">
+          <a href="https://arxiv.org/search/?query=jet+quenching+heavy-ion&searchtype=all&source=header"
+             target="_blank" rel="noopener noreferrer">
+            Jet quenching phenomenology (arXiv search)
+          </a>
+          <div class="muted">Energy loss, medium response, constraints from data.</div>
+        </div>
+
+        <div class="topic">
+          <a href="https://arxiv.org/search/?query=initial+state+heavy-ion+glasma&searchtype=all&source=header"
+             target="_blank" rel="noopener noreferrer">
+            Initial state / Glasma / CGC (arXiv search)
+          </a>
+          <div class="muted">Pre-equilibrium, saturation, initial fluctuations.</div>
+        </div>                   -->
+      </div>
+    </section>
+
+    <!-- =========================================================
+         (7) FOOTER
+         ========================================================= -->
+    <footer>
+       Winter 2026 · Heavy-Ion Collision Phenomenology Journal Club · Wayne State University
+    </footer>
+  </div>
+
+  <!-- =========================================================
+       (8) JAVASCRIPT
+       - Search / filter rows only
+       ========================================================= -->
+  <script>
+    const scheduleBody = document.getElementById("scheduleBody");
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase().trim();
+      const rows = Array.from(scheduleBody.querySelectorAll("tr"));
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
